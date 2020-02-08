@@ -8,8 +8,8 @@
     "start": "node ./dist/app.js",
     "build:dev": "rm -rf ./dist && npm run build:server:dev",
     "build:prod": "rm -rf ./dist && npm run build:server",
-    "build:server": "rm -rf ./dist && NODE_ENV=PRODUCTION babel src -d dist --copy-files",
-    "build:server:dev": "rm -rf ./dist && NODE_ENV=DEVELOPMENT babel src -d dist --copy-files"
+    "build:server": "rm -rf ./dist && NODE_ENV=PRODUCTION babel src/server -d dist --copy-files",
+    "build:server:dev": "rm -rf ./dist && NODE_ENV=DEVELOPMENT babel src/server -d dist --copy-files"
   },
   "author": "business.dillonosman@gmail.com",
   "license": "MIT",

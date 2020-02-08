@@ -61,7 +61,7 @@ export default class SocketServer {
           id: id,
           socket: socket
         });
-      };
+      }
     });
 
     setTimeout(()=>{

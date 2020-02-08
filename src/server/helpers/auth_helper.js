@@ -4,11 +4,11 @@ import {GetAccountByID} from "../models/account";
 
 export const hash = (tohash) => {
   return bcryptjs.hashSync(tohash, bcryptjs.genSaltSync(10))
-}
+};
 
 export const compare = (str, hash) => {
   return bcryptjs.compareSync(str, hash);
-}
+};
 
 export const signToken = (toSign) => jwt.sign(toSign, "my private key", {algorithm: 'HS256'});
 

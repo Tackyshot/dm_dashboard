@@ -75,7 +75,8 @@ const doLogout = async (req, h) => {
   //todo: add code that invalidates a user session.
 };
 
-const doValidate = async (req, h) =>{
+const doValidate = async (req, h) => {
+
   if(req.auth.credentials._id){
     const res = h.response({user: req.auth.credentials});
     res.type('application/JSON');
