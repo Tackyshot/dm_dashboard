@@ -7,7 +7,7 @@ process.on('unhandledRejection', (err) => {
 });
 
 let ApiServer = new Server();
-let SocketServer = new SocketServer();
+let socketServer = new SocketServer();
 
 ApiServer.initRoutes().then(() => {
   ApiServer.start();

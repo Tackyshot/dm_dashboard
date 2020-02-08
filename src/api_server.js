@@ -1,9 +1,9 @@
 import fs from 'fs';
 import Hapi from 'hapi';
-import {AuthHelper} from "./helpers/AuthHelper";
+import {validate} from "./helpers/auth_helper";
 import mongoose from 'mongoose';
 
-class Server {
+export default class ApiServer {
   server;
 
   constructor() {
@@ -12,20 +12,21 @@ class Server {
       host: 'localhost'
     });
 
+    //todo: uncomment to add a MongoDB Connection
     //start database connection
-    mongoose.Promise = global.Promise;
-    mongoose.connect(
-      `mongodb://exampleUser:examplePassword@localhost:27017/ApiServer`,
-      {
-        useNewUrlParser: true
-      },
-      error => {
-        if (error) {
-          console.log('MongoDB error', error);
-          // setTimeout(() => startDB(args), 3000);
-        }
-      }
-    );
+    // mongoose.Promise = global.Promise;
+    // mongoose.connect(
+    //   `mongodb://exampleUser:examplePassword@localhost:27017/ApiServer`,
+    //   {
+    //     useNewUrlParser: true
+    //   },
+    //   error => {
+    //     if (error) {
+    //       console.log('MongoDB error', error);
+    //       // setTimeout(() => startDB(args), 3000);
+    //     }
+    //   }
+    // );
 
   }//end constructor
 
@@ -36,7 +37,7 @@ class Server {
 
     this.server.auth.strategy('default', 'jwt', {
       key: "my private key",
-      validate: AuthHelper.validate,
+      validate: validate,
       verifyOptions: { algorithms: [ 'HS256' ] }  // only allow HS256 algorithm
     });
 

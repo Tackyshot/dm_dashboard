@@ -1,5 +1,5 @@
 import io from 'socket.io';
-import AuthHelper from './helpers/auth_helper';
+import {verifyToken, validate} from './helpers/auth_helper';
 import messenger from './socket_event_listeners/messenger';
 
 export default class SocketServer {
@@ -52,7 +52,7 @@ export default class SocketServer {
     socket.auth = false;
     socket.on('authenticate', (data) => {
       //check the auth data sent by the client
-      const {isValid} = AuthHelper.validate(AuthHelper.verifyToken(data.token));
+      const {isValid} = validate(verifyToken(data.token));
 
       if(isValid) {
         socket.auth = true;

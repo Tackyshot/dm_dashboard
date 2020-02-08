@@ -1,10 +1,6 @@
 import {GetAccountByUser} from "../models/account";
-import {AuthHelper} from "../helpers/AuthHelper";
+import {compare, signToken} from "../helpers/auth_helper";
 import blacklist from 'blacklist';
-// import DbManager from '../dbManager';
-// import {Models} from 'gf-db-manager';
-
-// const {GetAccountByUser} = Models;
 
 exports.plugin = {
   name: 'login',
@@ -47,10 +43,10 @@ const doLogin = async (req, h) => {
     let account = await GetAccountByUser(username);
 
     if(account) {
-      if(AuthHelper.compare(password, account.password)){
+      if(compare(password, account.password)){
         //password and account valid, create session
         let acc = blacklist(account, {password: true});
-        let token = AuthHelper.signToken(acc);
+        let token = signToken(acc);
         let res = h.response({jwt: token, user: acc});
 
         if(res){
