@@ -12,6 +12,21 @@ class Server {
       host: 'localhost'
     });
 
+    //start database connection
+    mongoose.Promise = global.Promise;
+    mongoose.connect(
+      `mongodb://exampleUser:examplePassword@localhost:27017/ApiServer`,
+      {
+        useNewUrlParser: true
+      },
+      error => {
+        if (error) {
+          console.log('MongoDB error', error);
+          // setTimeout(() => startDB(args), 3000);
+        }
+      }
+    );
+
   }//end constructor
 
   async initRoutes() {
